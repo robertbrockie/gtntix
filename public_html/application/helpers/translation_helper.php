@@ -12,6 +12,14 @@ if (!function_exists('translate_word')) {
 	function translate_word($key, $lang) {
 
 		$words = array(
+			'search' => array(
+							'en' => 'Search',
+							'fr' => 'Recherche'
+						),
+			'slogan' => array(
+							'en' => 'Tickets the easy way!',
+							'fr' => 'Billets en toute simplicité!'
+						),
 			'home' => array(
 							'en' => 'Home',
 							'fr' => 'Accueil',
