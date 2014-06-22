@@ -28,12 +28,6 @@ class Venue_model extends CI_Model {
 		return $query->row();
 	}
 
-	function getAll() {
-		$query = $this->db->get('venue');
-
-		return $query->result();
-	}
-
 	function getAllByName($lang = 'en') {
 		$this->db->order_by('name_'.$lang, 'asc');
 		$query = $this->db->get('venue');

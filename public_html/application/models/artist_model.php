@@ -27,17 +27,4 @@ class Artist_model extends CI_Model {
 
 		return $query->row();
 	}
-
-	function getAll() {
-		$query = $this->db->get('artist');
-
-		return $query->result();
-	}
-
-	function getAllByName() {
-		$this->db->order_by('name', 'asc');
-		$query = $this->db->get('artist');
-
-		return $query->result();
-	}
 }

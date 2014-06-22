@@ -19,61 +19,53 @@ if (!function_exists('translate_word')) {
 	function translate_word($key, $lang) {
 
 		$words = array(
-			'doors' => array(
-							'en' => 'Doors',
-							'fr' => 'Portes'
-						),
-			'show' => array(
-							'en' => 'Show',
-							'fr' => 'Spectacle'
-						),
-			'purchase_tickets' => array(
-							'en' => 'Purchase Tickets',
-							'fr' => 'Achat de billets'
-						),
-			'no_event' => array(
-							'en' => 'No event found!',
-							'fr' => 'Rien Trouver!',
-						),
-			'search' => array(
-							'en' => 'Search',
-							'fr' => 'Recherche'
-						),
-			'slogan' => array(
-							'en' => 'Tickets the easy way!',
-							'fr' => 'Billets en toute simplicité!'
-						),
-			'home' => array(
-							'en' => 'Home',
-							'fr' => 'Accueil',
+			'about' => array(
+							'en' => 'About',
+							'fr' => 'À Propos',
 						),
 			'calendar' => array(
 							'en' => 'Calendar',
 							'fr' => 'Calendrier',
 						),
-			'venues' => array(
-							'en' => 'Venues',
-							'fr' => 'Salles',
-						),
-			'about' => array(
-							'en' => 'About',
-							'fr' => 'À Propos',
-						),
 			'company_name' => array(
 							'en' => 'GTNTix',
 							'fr' => 'ReseauGTN',
 						),
-			'upcoming_events' => array(
-							'en' => 'Upcoming Events',
-							'fr' => 'Événements',
+			'doors' => array(
+							'en' => 'Doors',
+							'fr' => 'Portes'
 						),
 			'event_calendar' => array(
 							'en' => 'Event Calendar',
 							'fr' => 'Calendrier des Événements',
 						),
+			'home' => array(
+							'en' => 'Home',
+							'fr' => 'Accueil',
+						),
+			'no_event' => array(
+							'en' => 'No event found!',
+							'fr' => 'Rien Trouver!',
+						),
+			'purchase_tickets' => array(
+							'en' => 'Purchase Tickets',
+							'fr' => 'Achat de billets'
+						),
+			'search' => array(
+							'en' => 'Search',
+							'fr' => 'Recherche'
+						),
 			'search_results' => array(
 							'en' => 'Search Results',
 							'fr' => 'Résultats de la recherche',
+						),
+			'slogan' => array(
+							'en' => 'Tickets the easy way!',
+							'fr' => 'Billets en toute simplicité!'
+						),
+			'show' => array(
+							'en' => 'Show',
+							'fr' => 'Spectacle'
 						),
 			'tickets' => array(
 							'en' => 'Tickets',
@@ -82,6 +74,14 @@ if (!function_exists('translate_word')) {
 			'title' => array(
 							'en' => 'GTNtix - Tickets the easy way!',
 							'fr' => 'ReseauGTN - Billets en toute simplicité!',
+						),
+			'upcoming_events' => array(
+							'en' => 'Upcoming Events',
+							'fr' => 'Événements',
+						),
+			'venues' => array(
+							'en' => 'Venues',
+							'fr' => 'Salles',
 						),
 			'web_design' => array(
 							'en' => 'Web Design',

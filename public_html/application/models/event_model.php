@@ -3,9 +3,7 @@
 class Event_model extends CI_Model {
 
 	public $current_date_time;
-	public $ignore_announce_date;
-	public $include_non_gtn_events;
-
+	public $promoter_id;
 
 	function __construct() {
 		parent::__construct();
@@ -15,11 +13,7 @@ class Event_model extends CI_Model {
 		$this->load->model('venue_model');
 		$this->load->model('eventartist_model');
 
-		$this->include_non_gtn_events = $this->config->item('include_non_gtn_events');
-	}
-
-	function initalize($ignore_announce_date = false) {
-		$this->ignore_announce_date = $ignore_announce_date;
+		$this->promoter_id = $this->config->item('promoter_id');
 	}
 
 	function getById($id) {
@@ -46,157 +40,119 @@ class Event_model extends CI_Model {
 		return $event;
 	}
 
-	function getAll($filter_non_gtn_events = true) {
-		$this->db->order_by('date', 'desc');
-		$this->db->select('id');
-		if ($filter_non_gtn_events) {
-			$this->db->where('non_gtn_event', 0);
-		}
-
-		if (!$this->ignore_announce_date) {
-			$this->db->where('announce_date <= ', $this->current_date_time);
-		}
-
-		$query = $this->db->get('event');
-
-		$results = $query->result();
-
-		$events = array();
-		foreach ($results as $result) {
-			$events[] = $this->getById($result->id);
-		}
-		
-		return $events;
-	}
-
 	function getAllByVenueId($venue_id) {
 		$this->db->order_by('date', 'desc');
 		$this->db->select('id');
 		$this->db->where('venue_id', $venue_id);
-		if (!$this->include_non_gtn_events) {
-			$this->db->where('non_gtn_event', 0);
-		}
-
-		if (!$this->ignore_announce_date) {
-			$this->db->where('announce_date <= ', $this->current_date_time);
-		}
+		$this->db->where('announce_date <= ', $this->current_date_time);
 
 		$query = $this->db->get('event');
 
 		$results = $query->result();
 
-		$events = array();
-		foreach ($results as $result) {
-			$events[] = $this->getById($result->id);
-		}
+		return $this->getByRowIds($results);
+	}
 
-		return $events;
+	function getFeaturedEvents() {
+		$this->db->order_by('date', 'asc');
+		$this->db->join('event_promoter', 'event.id = event_promoter.event_id');
+
+		$this->db->select('event.id');
+		$this->db->where('event_promoter.promoter_id =', $this->promoter_id);
+		$this->db->where('event_promoter.featured', 1);
+		$this->db->where('date >= ', date('Y-m-d'));
+		$this->db->where('announce_date <= ', $this->current_date_time);
+
+		$query = $this->db->get('event');
+
+		$results = $query->result();
+
+		return $this->getByRowIds($results);
 	}
 
 	function getMonthEvents($year, $month) {
-		$this->db->select('id');
-		if (!$this->include_non_gtn_events) {
-			$this->db->where('non_gtn_event', 0);
-		}
-		$this->db->like('date', $year.'-'.$month, 'after');
+		$this->db->join('event_promoter', 'event.id = event_promoter.event_id');
 
-		if (!$this->ignore_announce_date) {
-			$this->db->where('announce_date <= ', $this->current_date_time);
-		}
+		$this->db->select('event.id');
+		$this->db->where('event_promoter.promoter_id =', $this->promoter_id);
+		$this->db->like('date', $year.'-'.$month, 'after');
+		$this->db->where('announce_date <= ', $this->current_date_time);
 
 		$query = $this->db->get('event');
 
 		$results = $query->result();
 
-		$events = array();
-		foreach ($results as $result) {
-			$events[] = $this->getById($result->id);
-		}
-
-		return $events;
+		return $this->getByRowIds($results);
 	}
 
 	function getLatestEvents($limit = 1) {
 		$this->db->order_by('date', 'asc');
-		$this->db->select('id');
+		$this->db->join('event_promoter', 'event.id = event_promoter.event_id');
+
+		$this->db->select('event.id');
+		$this->db->where('event_promoter.promoter_id =', $this->promoter_id);
 		$this->db->where('date >= ', date('Y-m-d'));
-		if (!$this->include_non_gtn_events) {
-			$this->db->where('non_gtn_event', 0);
-		}
-
-		if (!$this->ignore_announce_date) {
-			$this->db->where('announce_date <= ', $this->current_date_time);
-		}
-
-		$query = $this->db->get('event', $limit);
-
-		$results = $query->result();
-
-		$events = array();
-		foreach ($results as $result) {
-			$events[] = $this->getById($result->id);
-		}
-
-		return $events;
-	}
-
-	function getJustAnnouncedEvents($limit = 1) {
-		$this->db->order_by('announce_date', 'desc');
-		$this->db->select('id');
-		if (!$this->include_non_gtn_events) {
-			$this->db->where('non_gtn_event', 0);
-		}
 		$this->db->where('announce_date <= ', $this->current_date_time);
 
 		$query = $this->db->get('event', $limit);
 
 		$results = $query->result();
 
-		$events = array();
-		foreach ($results as $result) {
-			$events[] = $this->getById($result->id);
-		}
+		return $this->getByRowIds($results);
+	}
 
-		return $events;
+	function getJustAnnouncedEvents($limit = 1) {
+		$this->db->order_by('announce_date', 'desc');
+		$this->db->join('event_promoter', 'event.id = event_promoter.event_id');
+
+		$this->db->select('event.id');
+		$this->db->where('event_promoter.promoter_id =', $this->promoter_id);
+		$this->db->where('announce_date <= ', $this->current_date_time);
+		$this->db->where('date >= ', date('Y-m-d'));
+
+		$query = $this->db->get('event', $limit);
+
+		$results = $query->result();
+
+		return $this->getByRowIds($results);
 	}
 
 	function getByVenueId($venue_id) {
 		$this->db->order_by('date', 'asc');
-		$this->db->select('id');
+		$this->db->join('event_promoter', 'event.id = event_promoter.event_id');
+
+		$this->db->select('event.id');
+		$this->db->where('event_promoter.promoter_id =', $this->promoter_id);
 		$this->db->where('date >= ', date('Y-m-d'));
 		$this->db->where('venue_id', $venue_id);
-		if (!$this->include_non_gtn_events) {
-			$this->db->where('non_gtn_event', 0);
-		}
-
-		if (!$this->ignore_announce_date) {
-			$this->db->where('announce_date <= ', $this->current_date_time);
-		}
+		$this->db->where('announce_date <= ', $this->current_date_time);
 
 		$query = $this->db->get('event');
 
 		$results = $query->result();
 
-		$events = array();
-		foreach ($results as $result) {
-			$events[] = $this->getById($result->id);
-		}
-
-		return $events;
+		return $this->getByRowIds($results);
 	}
 
 	function search($keyword) {
-		if ($this->include_non_gtn_events) {
-			$query = $this->db->query('SELECT DISTINCT e.id as id FROM event as e, event_artist as ea, artist as a, venue as v WHERE e.id = ea.event_id and ea.artist_id = a.id and e.venue_id = v.id and e.date >= "'.date('Y-m-d').'" and announce_date <= "'.$this->current_date_time.'" and (a.name like "%'.$this->db->escape_like_str($keyword).'%" or v.name_en like "%'.$this->db->escape_like_str($keyword).'%" or v.name_fr like "%'.$this->db->escape_like_str($keyword).'%") ORDER BY e.date DESC');
-		} else {
-			$query = $this->db->query('SELECT DISTINCT e.id as id FROM event as e, event_artist as ea, artist as a, venue as v WHERE e.id = ea.event_id and ea.artist_id = a.id and e.venue_id = v.id and e.date >= "'.date('Y-m-d').'" and announce_date <= "'.$this->current_date_time.'" and non_gtn_event = 0 and (a.name like "%'.$this->db->escape_like_str($keyword).'%" or v.name_en like "%'.$this->db->escape_like_str($keyword).'%" or v.name_fr like "%'.$this->db->escape_like_str($keyword).'%") ORDER BY e.date DESC');
-		}
+		$query = $this->db->query('SELECT DISTINCT e.id as id FROM event as e, event_artist as ea, artist as a, event_promoter as ep, venue as v WHERE e.id = ea.event_id and ea.artist_id = a.id and e.venue_id = v.id and e.id = ep.event_id and ep.promoter_id = "'.$this->promoter_id.'" and e.date >= "'.date('Y-m-d').'" and announce_date <= "'.$this->current_date_time.'" and (a.name like "%'.$this->db->escape_like_str($keyword).'%" or v.name_en like "%'.$this->db->escape_like_str($keyword).'%" or v.name_fr like "%'.$this->db->escape_like_str($keyword).'%") ORDER BY e.date DESC');
 
 		$results = $query->result();
 		
+		return $this->getByRowIds($results);
+	}
+
+	/**
+	*	getByRowIds
+	*
+	*	Get events from a list of rows with ids.
+	*
+	*	@param ids - The rows of ids for the events we want to get.
+	**/
+	private function getByRowIds($rows) {
 		$events = array();
-		foreach ($results as $result) {
-			$events[] = $this->getById($result->id);
+		foreach ($rows as $row) {
+			$events[] = $this->getById($row->id);
 		}
 
 		return $events;
