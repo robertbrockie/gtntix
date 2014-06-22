@@ -19,6 +19,22 @@ if (!function_exists('translate_word')) {
 	function translate_word($key, $lang) {
 
 		$words = array(
+			'doors' => array(
+							'en' => 'Doors',
+							'fr' => 'Portes'
+						),
+			'show' => array(
+							'en' => 'Show',
+							'fr' => 'Spectacle'
+						),
+			'purchase_tickets' => array(
+							'en' => 'Purchase Tickets',
+							'fr' => 'Achat de billets'
+						),
+			'no_event' => array(
+							'en' => 'No event found!',
+							'fr' => 'Rien Trouver!',
+						),
 			'search' => array(
 							'en' => 'Search',
 							'fr' => 'Recherche'

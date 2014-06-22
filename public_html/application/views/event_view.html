@@ -1,6 +1,6 @@
 <div class="container-fluid">
 	<?php if (!$event) { ?>
-	<div>No event found!</div>
+	<div><?= translate_word('no_event', $lang) ?></div>
 	<?php } else { ?>
 
 	<?php foreach($event_artists as $event_artist) { ?>
@@ -27,9 +27,11 @@
 				<p><b>18+</b></p>
 			<?php } ?>
 			<p><?= $event->date ?></p>
-			<p>Doors: <?= $event->door_time ?></p>
-			<p>Show: <?= $event->show_time ?></p>
-			<a class="button" href="<?= $event->ticket_url_en ?>">Purchase Tickets</a>
+			<p><?= translate_word('doors', $lang) ?>: <?= $event->door_time ?></p>
+			<p><?= translate_word('show', $lang) ?>: <?= $event->show_time ?></p>
+			<a class="button" href="<?= translate_event_field($event, 'ticket_url', $lang) ?>">
+				<?= translate_word('purchase_tickets', $lang) ?>
+			</a>
 			<br/><br/>
 			<p><?= $event_artists[0]->bio_en ?></p>
 			<p>

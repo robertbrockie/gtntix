@@ -1,56 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Event extends CI_Controller {
-
-	const NUM_EVENTS = 48;
-	const NUM_EVENTS_JUST_ANNOUNCED = 10;
-
-	public $site_lang;
-
-	function __construct() {
-		parent::__construct();
-
-		$this->load->model('artist_model');
-		$this->load->model('calendar_model');
-		$this->load->model('event_model');
-		$this->load->model('eventartist_model');
-		$this->load->model('venue_model');
-
-		$this->site_lang = $this->config->item('website_lang');
-	}
-
-	/**
-	*	initializeData
-	*
-	*	Initalize the basic data we need for the views.
-	*
-	*	@return An array with language, theme, etc...
-	**/
-	private function initializeData() {
-		$data = array();
-
-		$data['lang'] = $this->site_lang;
-		$data['image_prefix'] = $this->config->item('image_prefix');
-		$data['venues'] = $this->venue_model->getAllByName();
-
-		return $data;
-	}
-
-	/**
-	*	renderView
-	*
-	*	Render the common views, along with the specific view.
-	*
-	*	@param $view - The specific view you want rendered.
-	*	@param $data - The data required for the view.
-	**/
-	private function renderView($view, $data) {
-		$this->load->view('/include/header.html', $data);
-		$this->load->view('/include/menu.html', $data);
-		$this->load->view('/include/search.html', $data);
-		$this->load->view('/'.$data['lang'].'/'.$view.'.html', $data);
-		$this->load->view('/include/footer.html', $data);
-	}
+class Event extends MY_Controller {
 
 	public function index() {
 
@@ -64,16 +14,6 @@ class Event extends CI_Controller {
 		foreach ($data['events'] as $event) {
 			$data['event_artists'][$event->id]['headliners'] = $this->eventartist_model->getHeadlinersForEventId($event->id);
 			$data['event_artists'][$event->id]['openers'] = $this->eventartist_model->getOpenersForEventId($event->id);
-		}
-
-		// get just announced events
-		$data['just_announced_events'] = $this->event_model->getJustAnnouncedEvents(self::NUM_EVENTS_JUST_ANNOUNCED);
-		foreach ($data['just_announced_events'] as $event) {
-			$event_artists = $this->eventartist_model->getArtistsForEventId($event->id);
-
-			if (count($event_artists) > 0) {
-				$data['just_announced_event_artists'][$event->id] = array($event_artists[0]);
-			}
 		}
 
 		$this->renderView('event_list', $data);
