@@ -2,69 +2,54 @@
 
 class MY_Controller extends CI_Controller {
 
-	public $user;
+	public $site_lang;
+	public $website_version;
 
 	function __construct() {
 		parent::__construct();
 
-		// always check to see if the current user is logged in
-		if (!$this->session->userdata('logged_in') || !$this->session->userdata('user')) {
-			redirect('/admin/login');
-		}
-
-		$this->user = $this->session->userdata('user');
-
 		$this->load->model('artist_model');
+		$this->load->model('calendar_model');
 		$this->load->model('event_model');
-		$this->event_model->initalize(true);
 		$this->load->model('eventartist_model');
 		$this->load->model('venue_model');
-	}
 
-	function _check_artist_name_exists($name) {
-		if($this->artist_model->getByName($name)) {
-			$this->form_validation->set_message('_check_artist_name_exists', 'Artist already exists.');
-			return false;
-		}
-		
-		return true;
-	}
-
-	function _check_venue_name_exists($name) {
-		if($this->venue_model->getByName($name)) {
-			$this->form_validation->set_message('_check_venue_name_exists', 'Venue already exists.');
-			return false;
-		}
-		
-		return true;
+		$this->site_lang = $this->config->item('website_lang');
+		$this->website_version = $this->config->item('website_version');
 	}
 
 	/**
-	*	_uploadImage
+	*	initializeData
 	*
-	*	@param field_name - The field name of the image
-	*	@param data - The data used to represent the object
+	*	Initalize the basic data we need for the views.
 	*
-	*	Upload a photo and set the url.
+	*	@return An array with language, theme, etc...
 	**/
-	public function _uploadImage($field_name, $data) {
+	protected function initializeData() {
+		$data = array();
 
-		if (isset($_FILES[$field_name])) {
+		$data['lang'] = $this->site_lang;
+		$data['image_prefix'] = $this->config->item('image_prefix');
+		$data['venues'] = $this->venue_model->getAllByName();
 
-			$config['upload_path'] = './uploads/';
-			$config['allowed_types'] = 'gif|jpg|jpeg|png'; 
-			$config['max_size'] = '1024'; // 1 meg
-			$config['remove_spaces'] = true;
-			$this->load->library('upload', $config);
-
-			if (!$this->upload->do_upload($field_name)) {
-				error_log('Error uploading image: '.$this->upload->display_errors());
-			} else {
-				$upload_data = $this->upload->data();
-				$data['image_url'] = $upload_data['file_name'];
-			}
-		}
+		$data['website_version'] = $this->website_version;
 
 		return $data;
+	}
+
+	/**
+	*	renderView
+	*
+	*	Render the common views, along with the specific view.
+	*
+	*	@param $view - The specific view you want rendered.
+	*	@param $data - The data required for the view.
+	**/
+	protected function renderView($view, $data) {
+		$this->load->view('/include/header.html', $data);
+		$this->load->view('/include/menu.html', $data);
+		$this->load->view('/include/search.html', $data);
+		$this->load->view('/'.$view.'.html', $data);
+		$this->load->view('/include/footer.html', $data);
 	}
 }

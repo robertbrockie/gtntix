@@ -1,13 +1,31 @@
 <div class="container-fluid">
 	<div class="row-fluid">
 		<div class="span4 about">
+		<?php if ($lang == 'en') { ?>
+			<h2>Who We Are</h2>
+			<p>GTN is an event ticket network dedicated to keeping the cost of purchasing event tickets in balance with the cost of events. We have devised a system to keep service charges low on all lower priced tickets. We use a market tested secure platform that operates seamlessly with most major credit cards. It is a rigorously tested, web 2.0 solution that is used internationally!</p>         
+		<?php } else { ?>
 			<h2>Le système</h2>
 			<p>GTN est un réseau de billetterie qui se spécialise dans le rapprochement des prix d’achat des billets avec les prix de vos événements. Nous avons construit un système permettant de garder les frais de service au plus bas sur les billets les moins chers.</p>
 
 			<p>Nous utilisons une plateforme testée avec succès sur le marché, qui fonctionne sans encombre avec la plupart des cartes de crédits populaires. Nous offrons une solution web 2.0 rigoureusement testée et en opération partout à travers le monde!</p> 
-			<img src="/media/images/themes/<?= $theme ?>/finance.png">
+		<?php } ?>
+			<img src="/media/images/finance.png">
 		</div>
- 		<div class="span4 about">
+
+		<div class="span4 about">
+		<?php if ($lang == 'en') { ?>
+			<h2>What We Offer</h2>
+			<ul>
+				<li>Online tickets with reasonable service charges</li>
+				<ul><li>…no more $6 service charges on $15 tickets!</li></ul>
+				<li>Increased sales for local venues and promoters</li>
+				<ul><li>…advance ticket sales will rise!</li></ul>
+				<li>Greater access to emerging artists</li>
+				<ul><li>…new artists will have larger audiences!</li></ul>
+			</ul>
+			<h3>Contact us <a href="mailto:dan@greenland.ca">here</a></h3>
+		<?php } else { ?>
 			<h2>Tout le monde gagne!</h2>
 			<ul>
 				<li>Des billets en ligne à un prix raisonnable </li>
@@ -19,12 +37,18 @@
 				<ul><li>…plus de gens vont les voir!</li></ul>
 			</ul>
 			<h3>Contactez nous <a href="mailto:dan@greenland.ca">ici</a></h3>
+		<?php } ?>
 		</div>
-		
+
 		<div class="span4 about">
-		    <h2>Rejoignez-nous</h2>
+		<?php if ($lang == 'en') { ?>
+			<h2>Join Us</h2>
+			<p>Join the club and event producers...who are now using GTN!</p>
+		<?php } else { ?>
+			<h2>Rejoignez-nous</h2>
 			<p>Joignez-vous aux producteurs d’événements qui ont changé pour le réseau GTN!</p>
-			<img src="/media/images/themes/<?= $theme ?>/venues.png">
+		<?php } ?>
+			<img src="/media/images/venues.png">
 		</div>
-	</div>	
+	</div>
 </div>
