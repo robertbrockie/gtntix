@@ -49,7 +49,7 @@ class Event extends CI_Controller {
 		$this->load->view('/include/'.$data['lang'].'/menu.html', $data);
 		$this->load->view('/include/'.$data['lang'].'/search.html', $data);
 		$this->load->view('/'.$data['lang'].'/'.$view.'.html', $data);
-		$this->load->view('/include/'.$data['lang'].'/footer.html', $data);
+		$this->load->view('/include/footer.html', $data);
 	}
 
 	public function index() {
