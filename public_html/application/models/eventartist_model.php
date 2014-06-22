@@ -13,53 +13,6 @@ class EventArtist_model extends CI_Model {
 		$this->load->model('artist_model');
 	}
 
-	function add($data) { 
-		$this->db->insert('event_artist', $data);
-
-		if (mysql_affected_rows() == 1) {
-			return $this->db->insert_id();
-		} else { 
-			return false;
-		}
-	}
-
-	function addHeadliner($event_id, $artist_id) {
-		$this->db->where('event_id', $event_id);
-		$this->db->where('artist_id', $artist_id);
-
-		$this->db->update('event_artist', array('is_headliner' => 1));
-
-		return true;
-	}
-
-	function delete($event_id, $artist_id) {
-		$this->db->where('event_id', $event_id);
-		$this->db->where('artist_id', $artist_id);
-
-		if (mysql_affected_rows() == 1) {
-			return true;
-		} else { 
-			return false;
-		}	}
-
-	function deleteAllByEventId($event_id) {
-		$this->db->where('event_id', $event_id);
-		$this->db->delete('event_artist');
-
-		if (mysql_affected_rows() > 0) {
-			return true;
-		} else { 
-			return false;
-		}
-	}
-
-	function deleteByArtistId($artist_id) {
-		$this->db->where('artist_id', $artist_id);
-		$this->db->delete('event_artist');
-
-		return true;	
-	}
-
 	function getArtistsForEventId($event_id, $filters = array()) {
 		$this->db->where('event_id', $event_id);
 		$this->db->order_by('rank', 'asc');
@@ -128,14 +81,5 @@ class EventArtist_model extends CI_Model {
 		}
 
 		return $artist;
-	}
-
-	function removeHeadliner($event_id, $artist_id) {
-		$this->db->where('event_id', $event_id);
-		$this->db->where('artist_id', $artist_id);
-
-		$this->db->update('event_artist', array('is_headliner' => 0));
-
-		return true;
 	}
 }

@@ -2,37 +2,6 @@
 
 class Venue_model extends CI_Model {
 
-	function add() {
-
-		$data = array(
-			'name_en' => '',
-			'name_fr' => '',
-			'address_en' => '',
-			'address_fr' => '',
-			'map_url' => '',
-			'website' => '',
-		);
-
-		$this->db->insert('venue', $data);
-
-		if(mysql_affected_rows() == 1) {
-			return $this->db->insert_id();
-		} else { 
-			return false;
-		}
-	}
-
-	function delete($id) {
-		$this->db->where('id', $id);
-		$this->db->delete('venue');
-
-		if (mysql_affected_rows() == 1) {
-			return true;
-		} else { 
-			return false;
-		}
-	}
-
 	function getById($id) {
 		$this->db->where('id', $id);
 		$query = $this->db->get('venue');
@@ -70,12 +39,5 @@ class Venue_model extends CI_Model {
 		$query = $this->db->get('venue');
 
 		return $query->result();
-	}
-
-	function update($data) {
-		$this->db->where('id', $data['id']);
-		$this->db->update('venue', $data);
-
-		return $data['id'];
 	}
 }

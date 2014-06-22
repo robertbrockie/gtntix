@@ -22,49 +22,6 @@ class Event_model extends CI_Model {
 		$this->ignore_announce_date = $ignore_announce_date;
 	}
 
-	function add() {
-
-		// Default data
-		$data = array(
-				'venue_id' => 0,
-				'date' => '0000-00-00',
-				'door_time' => '00:00:00',
-				'show_time' => '00:00:00',
-				'presenter_en' => '',
-				'presenter_fr' => '',
-				'optional_title_en' => '',
-				'optional_title_fr' => '',
-				'description_en' => '',
-				'description_fr' => '',
-				'age_restricted' => 0,
-				'seated' => 0,
-				'ticket_url_en' => '',
-				'ticket_url_fr' => '',
-				'announce_date' => '0000-00-00 00:00:00',
-				'ticket_onsale_date' => '0000-00-00 00:00:00',
-				'image_url' => '',
-		);
-
-		$this->db->insert('event', $data);
-
-		if(mysql_affected_rows() == 1) {
-			return $this->db->insert_id();
-		} else { 
-			return false;
-		}
-	}
-
-	function delete($id) {
-		$this->db->where('id', $id);
-		$this->db->delete('event');
-
-		if (mysql_affected_rows() == 1) {
-			return true;
-		} else { 
-			return false;
-		}
-	}
-
 	function getById($id) {
 		$this->db->where('id', $id);
 		$query = $this->db->get('event');
@@ -243,18 +200,5 @@ class Event_model extends CI_Model {
 		}
 
 		return $events;
-	}
-
-	function update($data) {
-
-		// TODO: whats the proper way of handling attached
-		// attributes in CI, this can't be the best.
-		if (isset($data['venue_name'])) {
-			unset($data['venue_name']);
-		}
-		$this->db->where('id', $data['id']);
-		$this->db->update('event', $data);
-
-		return $data['id'];
 	}
 }
