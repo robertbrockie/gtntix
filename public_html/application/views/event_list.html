@@ -20,7 +20,9 @@
 					<br/>
 					<?= event_date_format($event->date, $lang) ?> <?= $event->age_restricted ? '<b>18+</b>' : ''?>
 					<p>
-						<a class="button" href="<?= $event->ticket_url_fr ?>">Achat de billets</a>
+						<a class="button" href="<?= translate_event_field($event, 'ticket_url', $lang) ?>">
+							<?= translate_word('tickets', $lang) ?>
+						</a>
 					</p>
 				</div>
 			</div>

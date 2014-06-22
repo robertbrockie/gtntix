@@ -31,6 +31,7 @@ class MY_Controller extends CI_Controller {
 		$data['lang'] = $this->site_lang;
 		$data['image_prefix'] = $this->config->item('image_prefix');
 		$data['venues'] = $this->venue_model->getAllByName();
+		$data['header'] = ''; // will be overridden
 
 		$data['website_version'] = $this->website_version;
 

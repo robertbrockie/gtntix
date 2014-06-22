@@ -1,11 +1,18 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-
 /**
-*
 *	translation_helper
 *
-*	Helping with translating words.
+*	Need help translating something.
 *
+**/
+
+/**
+*	translate_word
+*
+*	@param key - The key the represents the word we want to translate.
+*	@param lang - The language we wish to translate.
+*
+*	@return A word translated into the specific language.
 **/
 if (!function_exists('translate_word')) {
 
@@ -52,6 +59,10 @@ if (!function_exists('translate_word')) {
 							'en' => 'Search Results',
 							'fr' => 'Résultats de la recherche',
 						),
+			'tickets' => array(
+							'en' => 'Tickets',
+							'fr' => 'Achat de billets',
+						),
 			'title' => array(
 							'en' => 'GTNtix - Tickets the easy way!',
 							'fr' => 'ReseauGTN - Billets en toute simplicité!',
@@ -71,6 +82,41 @@ if (!function_exists('translate_word')) {
 		} else {
 			error_log('Could not translate word: '.$key.' for lang: '.$lang);
 			return '';
+		}
+	}
+}
+
+/**
+*	translate_event_field
+*
+*	@param event - The event
+*	@param field - The field of the event we want to translate.
+*	@param lang - The language we wish to translate.
+*
+*	@return A field translated into the specific language.
+**/
+if (!function_exists('translate_event_field')) {
+
+	function translate_event_field($event, $field, $lang) {
+
+		switch ($field) {
+			case 'ticket_url':
+				if ($lang == 'en') {
+					return $event->ticket_url_en;
+				} else {
+					return $event->ticket_url_fr;
+				}
+				break;
+			case 'ticket_description':
+				if ($lang == 'en') {
+					return $event->ticket_description_en;
+				} else {
+					return $event->ticket_description_fr;
+				}
+				break;
+			default:
+				error_log('Could not find event field: '.$field);
+				return '';
 		}
 	}
 }
