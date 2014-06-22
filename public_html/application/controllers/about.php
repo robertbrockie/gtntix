@@ -34,7 +34,7 @@ class About extends CI_Controller {
 	*	@param $data - The data required for the view.
 	**/
 	private function renderView($view, $data) {
-		$this->load->view('/include/'.$data['lang'].'/header.html', $data);
+		$this->load->view('/include/header.html', $data);
 		$this->load->view('/include/'.$data['lang'].'/menu.html', $data);
 		$this->load->view('/include/'.$data['lang'].'/search.html', $data);
 		$this->load->view('/'.$data['lang'].'/'.$view.'.html', $data);

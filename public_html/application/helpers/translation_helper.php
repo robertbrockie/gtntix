@@ -28,9 +28,9 @@ if (!function_exists('translate_word')) {
 							'en' => 'Search Results',
 							'fr' => 'Résultats de la recherche',
 						),
-			'footer' => array(
-							'en' => '',
-							'fr' => '',
+			'title' => array(
+							'en' => 'GTNtix - Tickets the easy way!',
+							'fr' => 'ReseauGTN - Billets en toute simplicité!',
 						),
 			'web_design' => array(
 							'en' => 'Web Design',
