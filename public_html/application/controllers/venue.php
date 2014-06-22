@@ -23,7 +23,6 @@ class Venue extends CI_Controller {
 		$data = array();
 
 		$data['lang'] = $this->config->item('website_lang');
-		$data['theme'] = $this->config->item('theme');
 		$data['image_prefix'] = $this->config->item('image_prefix');
 		$data['venues'] = $this->venue_model->getAllByName();
 
@@ -39,11 +38,11 @@ class Venue extends CI_Controller {
 	*	@param $data - The data required for the view.
 	**/
 	private function renderView($view, $data) {
-		$this->load->view('/themes/'.$data['theme'].'/include/'.$data['lang'].'/header.html', $data);
-		$this->load->view('/themes/'.$data['theme'].'/include/'.$data['lang'].'/menu.html', $data);
-		$this->load->view('/themes/'.$data['theme'].'/include/'.$data['lang'].'/search.html', $data);
-		$this->load->view('/themes/'.$data['theme'].'/'.$data['lang'].'/'.$view.'.html', $data);
-		$this->load->view('/themes/'.$data['theme'].'/include/'.$data['lang'].'/footer.html', $data);
+		$this->load->view('/include/'.$data['lang'].'/header.html', $data);
+		$this->load->view('/include/'.$data['lang'].'/menu.html', $data);
+		$this->load->view('/include/'.$data['lang'].'/search.html', $data);
+		$this->load->view('/'.$data['lang'].'/'.$view.'.html', $data);
+		$this->load->view('/include/'.$data['lang'].'/footer.html', $data);
 	}
 
 	public function events($id) {

@@ -158,11 +158,11 @@ input[type="color"]:focus,
 }
 
 .event .facebook {
-	background-image: url('/media/images/themes/gtn/fb_logo.png');
+	background-image: url('/media/images/fb_logo.png');
 }
 
 .event .twitter {
-	background-image: url('/media/images/themes/gtn/twitter_logo.png');
+	background-image: url('/media/images/twitter_logo.png');
 }
 
 .event .button:hover {
