@@ -65,8 +65,7 @@ $autoload['libraries'] = array('database', 'form_validation');
 */
 
 $autoload['helper'] = array('url', 'form', 'router_translation_helper', 
-								'user_helper', 'event_helper', 'misc_helper',
-								'translation_helper');
+					'event_helper', 'misc_helper', 'translation_helper');
 
 
 /*
