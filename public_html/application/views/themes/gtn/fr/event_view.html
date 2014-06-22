@@ -1,0 +1,47 @@
+<div class="container-fluid">
+	<?php if (!$event) { ?>
+	<div>Rien Trouver!</div>
+	<?php } else { ?>
+
+	<?php foreach($event_artists as $event_artist) { ?>
+		<?php if ($event_artist->is_headliner) { ?>
+			<h2><?= $event_artist->name ?></h2>
+		<?php } ?>
+	<?php } ?>
+	<div class="row-fluid">
+		<div class="span6 event-view">
+			<?php foreach($event_artists as $event_artist) { ?>
+				<?php if (!$event_artist->is_headliner) { ?>
+					<span class="bold green">+ <?= $event_artist->name ?></span>
+					<br>
+				<?php } ?>
+			<?php } ?>
+			<?php if($event->image_url) { ?>
+				<img class="pull-left" src="<?= $image_prefix.$event->image_url ?>" />
+			<?php } ?>
+		</div>
+
+		<div class="span6 event">
+			<p><span class="bold"><?= $event->venue_name ?></span></p>
+			<?php if ($event->age_restricted) { ?>
+				<p><b>18+</b></p>
+			<?php } ?>
+			<p><?= $event->date ?></p>
+			<p>Portes: <?= $event->door_time ?></p>
+			<p>Spectacle: <?= $event->show_time ?></p>
+			<a class="button" href="<?= $event->ticket_url_fr ?>">Achat de billets</a>
+			<br/><br/>
+			<p><?= $event_artists[0]->bio_fr ?></p>
+			<p>
+				<?php if ($event_artists[0]->facebook_url) { ?>
+					<a class="icon facebook" href="<?=trim($event_artists[0]->facebook_url)?>" target="_blank"></a>
+				<?php } ?>
+				<?php if ($event_artists[0]->twitter_url) { ?>
+					<a class="icon twitter" href="<?=trim($event_artists[0]->twitter_url)?>" target="_blank"></a>
+				<?php } ?>
+				<div style="clear: all"></div>
+			</p>
+		</div>
+	</div>
+	<?php } ?>
+</div>

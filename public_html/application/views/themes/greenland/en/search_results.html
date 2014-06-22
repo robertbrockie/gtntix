@@ -1,0 +1,24 @@
+<div class="container-fluid">
+	<?php if (!count($event_chunks)) { ?>
+		<div>No events found!</div>
+	<?php } else { ?>
+
+		<?php foreach($event_chunks as $event_chunk) { ?>
+			<div class="row-fluid">
+				<?php foreach($event_chunk as $event) { ?>
+					<div class="span6 well well-small search">
+						<a href="#">
+							<img class="pull-left" src="<?= $image_prefix.$event->image_url ?>" />
+						</a>
+						<?php foreach($event_artists[$event->id] as $event_artist) { ?>
+							<p class="bold"><?= $event_artist->name ?></p>
+						<?php } ?>
+						<p><?= $event->venue_name ?></p>
+						<p><?= event_date_format($event->date, $lang) ?></p>
+						<p><a href="<?= translate_route('event/view', $lang) ?>/<?= $event->id ?>">More Details &raquo;</a></p>
+					</div>
+				<?php } ?>
+			</div>
+		<?php } ?>
+	<?php } ?>
+</div>

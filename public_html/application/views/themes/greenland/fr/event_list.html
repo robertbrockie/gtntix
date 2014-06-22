@@ -1,0 +1,78 @@
+<div id="content">
+	<div class="heading">
+		<h1>Événements</h1>
+	</div>
+	<?php foreach($events as $event) { ?>
+		<div class="listing">
+			<?= build_event_image($event, $lang, $image_prefix) ?>
+			<div class="details">
+				<div class="headliner"><?= build_event_string($event_artists[$event->id]['headliners'], $event->id, $lang, 'headliner') ?></div>
+				<div class="opener"><?= build_event_string($event_artists[$event->id]['openers'], $event->id, $lang) ?></div>
+				<hr/>
+				<div class="date"><?= event_date_format($event->date, $lang) ?></div>
+				<div class="venue"><?= $event->venue_name ?></div>
+			</div>
+			<div class="tickets">
+				<a href="<?= $event->ticket_url_fr ?>">Billets</a>
+				<br/><br/>
+				<?= $event->age_restricted ? '<b>18+</b>' : ''?>
+			</div>
+			<div style="clear: both;"></div>
+		</div>
+	<?php } ?>
+</div>
+
+<div id="sidebar">
+	<div class="heading">
+		<h1>Récemment annoncé</h1>
+		<?php foreach($just_announced_events as $event) { ?>
+			<div class="just_announced">
+				<div class="artist">
+					<?= build_event_string($just_announced_event_artists[$event->id], $event->id, $lang) ?>
+				</div>
+				<div class="date"><?= event_date_format($event->date, $lang) ?></div>
+			</div>
+		<?php } ?>
+	</div>
+
+	<div class="heading">
+		<h1>Achat de billets</h1>
+			<div>
+				<p><a href="http://www.admission.com/" target="_blank">ADMISSION</a><br/>1-855-790-1245</p>
+			</div>
+			<div>
+				<p><a href="http://www.evenko.ca/" target="_blank">CENTRE BELL</a><br/>1-855-310-2525</p>
+			</div>
+			<div>
+				<p><a href="http://www.clubsoda.ca/" target="_blank">CLUB SODA</a><br/>514-286-1010</p>
+			</div>
+			<div>
+				<p><a href="http://www.theatrecoronavirginmobile.com/" target="_blank">THEATRE CORONA VIRGIN MOBILE</a><br/>514-790-2525 / 1 855-310-2525</p>
+			</div>
+			<div>
+				<p><a href="http://www.atomheart.ca/" target="_blank">ATOM HEART</a><br/>364B SHERBROOKE E.</p>
+			</div>
+			<div>
+				<p><a href="http://www.cheapthrills.ca/" target="_blank">CHEAP THRILLS</a><br/>2044 METCALFE</p>
+			</div>
+			<div>
+				<p><a href="http://www.myspace.com/loblique" target="_blank">L'OBLIQUE</a><br/>4333 RIVARD</p>
+			</div>
+			<div>
+				<p><a href="http://www.myspace.com/offthehookmontreal" target="_blank">OFF THE HOOK</a><br/>1021A STE-CATHERINE O.</p>
+			</div> 
+			<div>
+				<p><a href="http://www.soundcentralstore.com/" target="_blank">SOUNDCENTRAL</a><br/>4486 COLONIALE</p>
+			</div>
+			<div>
+				<p><a href="http://www.thinkempire.com/stores/ste-catherine" target="_blank">EMPIRE</a><br/>251 STE-CATHERINE E.</p>
+			</div>
+	</div>
+
+	<div class="heading">
+		<h1>Twitter</h1>
+		<a class="twitter-timeline" href="https://twitter.com/greenlandprod" data-widget-id="455458582893326336">Tweets by @greenlandprod</a>
+		<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+	</div>
+
+</div>

@@ -1,0 +1,338 @@
+body {
+	padding-bottom: 10px;
+}
+
+a {
+	color: #848c43;
+	text-decoration: none;
+}
+
+a:hover, a:focus {
+	color: #53582a;
+	text-decoration: underline;
+}
+
+.small {
+	font-size: 0.8em;
+}
+
+.green {
+	color: #848c43;
+}
+
+.headliner {
+	font-weight: bold;
+	font-size: 1.5em;
+	color: #848c43;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+.contact {
+	border: 1px solid #040205;
+	padding: 8px;
+	text-align: center;
+	margin-bottom: 10px;
+	font-weight: bold;
+}
+
+.gtnbutton a {
+	background-color: #c3c98f;
+	border: 2px solid #040205;
+	color: #040205;
+	padding: 4px;
+}
+
+textarea:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+.uneditable-input:focus {   
+	box-shadow: none;
+	outline: 0 none;
+}
+
+.navbar-custom {
+	background-color: white;
+	background-image: none;
+	border-bottom: 1px solid #040205;
+	color: #040205;
+}
+
+.navbar .nav li.dropdown.open > .dropdown-toggle {
+	background-color: white;
+	background-image: none;
+	color: #040205;	
+}
+
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus, .dropdown-submenu:hover > a, .dropdown-submenu:focus > a {
+	color: rgb(255, 255, 255);
+	text-decoration: none;
+	background-color: #848c43;
+	background-image: none;
+	background-repeat: repeat-x;
+}
+
+.navbar .nav > li > a {
+          background-color: white;   
+          color: #040205;
+ }
+
+.navbar .nav > li > a:focus,
+.navbar .nav > li > a:hover {
+	background-color: white;
+	color: #848c43;
+}
+
+.navbar .calendar {
+	background-color: white;
+	color: #040205;
+	font-weight: bold;
+	font-size: 1em;
+}
+
+
+.logo img {
+	margin-left: 10px;
+	margin-right: 20px;
+}
+
+.logo h1 {
+	color: #040205;
+
+}    
+
+.logo a {
+    color: #848c43;
+    font-weight: bold;
+}
+
+.logo a:hover {
+	background-color: #848c43;
+	color: #040205;
+}
+
+.logo hr {
+	margin: 20px 0;
+	border: 0;
+	border-top: 1px solid #040205;
+	border-bottom: none;
+}
+
+.logo-large {
+	font-size: 1.8em;
+	font-weight: bold;
+	padding: 20px 0 20px 0;
+}
+		
+.event .button {
+	color: #040205;
+	border: 1px solid #040205;
+	border-radius: 25px;
+	padding: 4px 6px;
+	text-align: center;
+	font-weight: bold;
+	line-height: 2em;
+}
+
+.event .icon {
+	background-repeat: no-repeat;
+	padding-right: 10px;
+	display: block;
+	float: left;
+	height: 29px;
+	width: 29px;
+}
+
+.event .facebook {
+	background-image: url('/media/images/themes/gtn/fb_logo.png');
+}
+
+.event .twitter {
+	background-image: url('/media/images/themes/gtn/twitter_logo.png');
+}
+
+.event .button:hover {
+	text-decoration: none;
+	background-color: #848c43;
+}
+
+.event h2 {
+	color: #040205;
+	font-weight: bold;
+	font-size: 1em;
+}
+
+.event h3 {
+	color: #53582a;
+	font-size: 1em;
+}
+ 
+.event img {
+	margin: 10px 0 20px 0;
+	max-height: 150px;
+}
+
+.event-view a {
+	color: #040205;
+	border: 1px solid #040205;
+	border-radius: 25px;
+	padding: 4px 6px;
+	text-align: center;
+	font-weight: bold;
+	line-height: 2em;
+}
+
+.event-view a:hover {
+	text-decoration: none;
+	background-color: #848c43;
+} 
+.event-view h2 {
+	color: #040205;
+	font-weight: bold;
+	font-size: 1em;
+}
+
+.event-view h3 {
+	color: #53582a;
+	font-size: 1em;
+}
+ 
+.event-view img {
+	margin: 10px 0 20px 0;
+	max-height: 375px;
+}
+
+.about h2 {
+	color: #040205;
+	font-weight: bold;
+	font-size: 1em;
+}
+
+.about h3 {
+	border: 1px solid #040205;
+	border-radius: 25px;
+	padding: 8px;
+	text-align: center;
+	margin-top: 30px;
+	font-weight: bold;
+}
+
+
+.about img {
+	margin: 10px 0 20px 0;
+	max-width: 100%;
+}
+
+/* 
+	Event calendar styles
+*/
+.calendar {
+	margin: 0 auto;
+	font-size: 12px;
+}
+
+.calendar th {
+	font-size: 24px;
+}
+
+.calendar .days td {
+	background-color: white;
+	border: 1px solid black;
+	color: black;
+	height: 120px;
+	padding: 4px;
+	vertical-align: top;
+	width:120px;
+}
+
+.calendar .days a {
+	color: black;
+	font-weight: bold;
+}
+
+.calendar .days td:hover {
+	background-color: #848c43;
+	color: white;
+}
+
+.calendar .day_num {
+	font-weight: bold;
+}
+
+.search  {
+	background-color: white;
+	border: 1px solid #040205;
+}
+
+.search-button {
+	border: 1px solid #040205;
+	border-radius: 25px;
+	max-width:100px;
+	padding: 2px 10px;
+}
+
+.search-button:hover {
+	background-color: #848c43;
+}
+
+
+.search img {
+	padding-right:20px;
+	max-height: 150px;
+}
+
+.search-ul {
+	text-align; center;
+	display: inline-block;
+}
+
+.pagination ul {
+	border-radius: 0px;
+	box-shadow: none;
+}
+
+.pagination ul > li > a,
+.pagination ul > li > span {
+	padding: 8px 16px;
+	line-height: 1em;
+	text-decoration: underline;
+	background-color: none;
+	border-top: none;
+	border-bottom: none;
+}
+
+.pagination ul > li > a:hover,
+.pagination ul > .active > a,
+.pagination ul > .active > span {
+	background-color: transparent;
+	color: black;
+}
+
+.pagination ul > li:first-child > a,
+.pagination ul > li:first-child > span {
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+}
+
+.pagination ul > li:last-child > a,
+.pagination ul > li:last-child > span {
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+
+

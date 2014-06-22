@@ -1,0 +1,30 @@
+<?php 
+	// chunk up the events
+	$num_events_chunk = 4;
+	$event_chunks = array_chunk($events, $num_events_chunk);
+?>
+
+<div class="container-fluid">
+<?php foreach($event_chunks as $event_chunk) { ?>
+	<div class="row-fluid">
+		<?php foreach($event_chunk as $event) { ?>
+			<div class="span3">
+				<div class="event">
+					<?= build_event_image($event, $lang, $image_prefix) ?>
+					<br/>
+					<?= build_event_string($event_artists[$event->id]['headliners'], $event->id, $lang, 'headliner') ?>
+					<br/>
+					<?= build_event_string($event_artists[$event->id]['openers'], $event->id, $lang) ?>
+					<br/>
+					<span class="bold">@ <?= $event->venue_name ?></span>
+					<br/>
+					<?= event_date_format($event->date, $lang) ?> <?= $event->age_restricted ? '<b>18+</b>' : ''?>
+					<p>
+						<a class="button" href="<?= $event->ticket_url_fr ?>">Tickets</a>
+					</p>
+				</div>
+			</div>
+		<?php } ?>
+	</div>
+<?php } ?>
+</div>

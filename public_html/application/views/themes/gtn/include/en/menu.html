@@ -1,0 +1,27 @@
+<div class="navbar navbar-inverse" role="navigation">
+	<div class="navbar-custom">
+		<div class="container">
+			<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<div class="nav-collapse collapse nav-custom">
+				<ul class="nav ">
+					<li><a href="<?= translate_route('event', $lang) ?>">Home</a></li>
+					<li><a class="calendar" href="<?= translate_route('event/calendar', $lang) ?>">Calendar</a></li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Venues <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<?php foreach ($venues as $venue) { ?>
+								<li><a href="<?= translate_route('venue/events', $lang) ?>/<?= $venue->id ?>"><?= $venue->name_en ?></a></li>
+							<?php } ?>
+						</ul>
+					</li>
+					<li><a href="<?= translate_route('about', $lang) ?>">About</a></li>					
+					<li><a href="http://reseaugtn.com/<?= uri_string() ?>">FR</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
