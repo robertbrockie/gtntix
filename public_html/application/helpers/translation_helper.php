@@ -12,6 +12,22 @@ if (!function_exists('translate_word')) {
 	function translate_word($key, $lang) {
 
 		$words = array(
+			'home' => array(
+							'en' => 'Home',
+							'fr' => 'Accueil',
+						),
+			'calendar' => array(
+							'en' => 'Calendar',
+							'fr' => 'Calendrier',
+						),
+			'venues' => array(
+							'en' => 'Venues',
+							'fr' => 'Salles',
+						),
+			'about' => array(
+							'en' => 'About',
+							'fr' => 'À Propos',
+						),
 			'company_name' => array(
 							'en' => 'GTNTix',
 							'fr' => 'ReseauGTN',

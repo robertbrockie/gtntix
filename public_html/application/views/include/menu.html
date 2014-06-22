@@ -8,18 +8,23 @@
 			</button>
 			<div class="nav-collapse collapse nav-custom">
 				<ul class="nav ">
-					<li><a href="<?= translate_route('event', $lang) ?>">Accueil</a></li>
-					<li><a class="calendar" href="<?= translate_route('event/calendar', $lang) ?>">Calendrier</a></li>
+					<li><a href="<?= translate_route('event', $lang) ?>"><?= translate_word('home', $lang) ?></a></li>
+					<li><a class="calendar" href="<?= translate_route('event/calendar', $lang) ?>"><?= translate_word('calendar', $lang) ?></a></li>
 					<li class="dropdown">
-						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Salles <b class="caret"></b></a>
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?= translate_word('venues', $lang) ?> <b class="caret"></b></a>
 						<ul class="dropdown-menu">
 							<?php foreach ($venues as $venue) { ?>
 								<li><a href="<?= translate_route('venue/events', $lang) ?>/<?= $venue->id ?>"><?= $venue->name_en ?></a></li>
 							<?php } ?>
 						</ul>
 					</li>
-					<li><a href="<?= translate_route('about', $lang) ?>">À Propos</a></li>
-					<li><a href="http://gtntix.com/<?= uri_string() ?>">EN</a></li>
+					<li><a href="<?= translate_route('about', $lang) ?>"><?= translate_word('about', $lang) ?></a></li>
+					
+					<?php if ($lang == 'en') { ?>
+						<li><a href="http://reseaugtn.com/<?= uri_string() ?>">FR</a></li>
+					<?php } else { ?>
+						<li><a href="http://gtntix.com/<?= uri_string() ?>">EN</a></li>
+					<?php } ?>
 				</ul>
 			</div>
 		</div>
