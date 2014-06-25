@@ -33,7 +33,7 @@
 				<?= translate_word('purchase_tickets', $lang) ?>
 			</a>
 			<br/><br/>
-			<p><?= $event_artists[0]->bio_en ?></p>
+			<p><?= translate_artist_field($event_artists[0], 'bio', $lang) ?></p>
 			<p>
 				<?php if ($event_artists[0]->facebook_url) { ?>
 					<a class="icon facebook" href="<?=trim($event_artists[0]->facebook_url)?>" target="_blank"></a>
