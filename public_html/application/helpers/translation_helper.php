@@ -136,3 +136,31 @@ if (!function_exists('translate_event_field')) {
 		}
 	}
 }
+
+/**
+*	translate_artist_field
+*
+*	@param artist - The artist
+*	@param field - The field of the artist we want to translate.
+*	@param lang - The language we wish to translate.
+*
+*	@return A field translated into the specific language.
+**/
+if (!function_exists('translate_artist_field')) {
+
+	function translate_artist_field($artist, $field, $lang) {
+
+		switch ($field) {
+			case 'bio':
+				if ($lang == 'en') {
+					return $artist->bio_en;
+				} else {
+					return $artist->bio_fr;
+				}
+				break;
+			default:
+				error_log('Could not find artist field: '.$field);
+				return '';
+		}
+	}
+}
