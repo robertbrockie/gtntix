@@ -2,7 +2,7 @@
 
 class MY_Controller extends CI_Controller {
 
-	const NUM_EVENTS = 48;
+	const NUM_EVENTS = 96;
 	const NUM_EVENTS_JUST_ANNOUNCED = 10;
 
 	public $site_lang;
